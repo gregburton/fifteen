@@ -3,6 +3,7 @@
 #
 # class Computer
 # end
+#We don't have multiple classes yet.  Potential other classes are player anc computer.
 
 class Game
   # attr_reader , we might need this later
@@ -31,26 +32,38 @@ class Game
     @computer_numbers << computer_choice
   end
 
-  # def all_possible_winning_combos(numbers, sum)
-  #   numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  #   sum = ARGV.empty? ? 15 : ARGV.first.to_i
-  #   Array(numbers).combination(3).find_all { |x, y, z| x + y + z == sum } || []
-  # end
 
-  def did_ye_win
-    sum = ARGV.empty? ? 15 : ARGV.first.to_i
-      if Array@computer_numbers.combinataion(3).find_all { |x, y, z| x + y + z == sum } || []
-        puts "Computer won."
-      elsif  Array@player_numbers.combinataion(3).find_all { |x, y, z| x + y + z == sum } || []
-        puts "Player won."
-      else
-        puts "Keep trying"
-      end
-  end
-    # def is_the_game_unwinnable
+
+  def did_ye_win(numbers, sum)
+  #right now, this is general, and we want it to apply to both.  Do we need to make two different methods or call the method twice, once on computer and once on player?
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    sum     = ARGV.empty? ? 15 : ARGV.first.to_i
+
+    def sum_exists(numbers, sum)
+      Array(numbers).combination(3).find_all { |x, y, z| x + y + z == sum } || []
+    end
+
+    result = sum_exists(numbers, sum)
+
+    puts "given this array of choices: #{numbers.inspect}"
+    puts "#{result.size} pairs add up to #{sum}: #{result.inspect}"
+
+    if result.size => 1
+      puts "Win"
+    end
+
+    # if results.size > 1
+    #   puts "Computer won."
+    # elsif  Array(@player_numbers).combination(3).find_all { |x, y, z| x + y + z == sum } || []
+    #   puts "Player won."
+    # else
+    #   puts "Keep trying"
     # end
   end
-
-  # def number
-  #   @number
+  # def is_the_game_unwinnable
   # end
+end
+
+# def number
+#   @number
+# end

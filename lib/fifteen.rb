@@ -14,15 +14,22 @@ class Game
     @computer_numbers = []
   end
 
-  def greeting
+  def greeting 
     puts  "Welcome to our game of 15.  You and the computer will take   turns choosing one number at a time from 1 to 9.  Once a number is chosen, it can't be used again this round.  Someone wins if they have said three numbers that sum to 15.  Note that any combination of three that you have mentioned can be used."
   end
   #we could make these into classes
-  def player_turn
+  #need to put some way of randomly choosing who goes first.
+  #need a while statement.  while result.size < 1 && number pool !=[],
+  def player_turn#need argument here?
     puts "What number do you choose?"
     gets.chomp_to.i = player_choice
     @number_pool.delete(player_choice)
     @player_numbers << player_choice
+    if
+      @player_numbers.size => 3
+      @player_numbers.did_ye_win
+    else
+      computer_turn
   end
 
   def computer_turn
@@ -30,12 +37,18 @@ class Game
     puts "The computer chose #{computer_choice}"
     @number_pool.delete(computer_choice)
     @computer_numbers << computer_choice
+    if
+      @computer_numbers.size => 3
+      @computer_numbers.did_ye_win
+    else
+      player_turn
+    end
   end
 
-
+#only invoke did_ye_win after each player has three numbers.  Need a counter for number of guesses.
 
   def did_ye_win(numbers, sum)
-  #right now, this is general, and we want it to apply to both.  Do we need to make two different methods or call the method twice, once on computer and once on player?
+  #right now, this is general, and we want it to apply to both.  We also need to call this method on each player's set of guesses only, not the whole array of numbers.  Do we need to make two different methods or call the method twice per round, once on computer and once on player?
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     sum     = ARGV.empty? ? 15 : ARGV.first.to_i
 
@@ -52,12 +65,13 @@ class Game
       puts "Win"
     end
 
+    #We really want this to be three different options, player win, computer win, or no one win.
     # if results.size > 1
     #   puts "Computer won."
     # elsif  Array(@player_numbers).combination(3).find_all { |x, y, z| x + y + z == sum } || []
     #   puts "Player won."
     # else
-    #   puts "Keep trying"
+    #   puts "Keep trying" and makes game continue to play.
     # end
   end
   # def is_the_game_unwinnable

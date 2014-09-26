@@ -8,13 +8,14 @@
 class Game
   # attr_reader , we might need this later
   def initialize
-    @number_pool = number_pool
-    number_pool << [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    # @number_pool = number_pool
+    # @number_pool << [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @number_pool = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     @player_numbers = []
     @computer_numbers = []
   end
 
-  def greeting 
+  def greeting
     puts  "Welcome to our game of 15.  You and the computer will take   turns choosing one number at a time from 1 to 9.  Once a number is chosen, it can't be used again this round.  Someone wins if they have said three numbers that sum to 15.  Note that any combination of three that you have mentioned can be used."
   end
   #we could make these into classes
@@ -30,6 +31,7 @@ class Game
       @player_numbers.did_ye_win
     else
       computer_turn
+    end
   end
 
   def computer_turn

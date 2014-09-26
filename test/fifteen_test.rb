@@ -12,10 +12,15 @@ class FifteenTest < Minitest::Unit::TestCase
   # end
   #if we have NumberArray class, we will need to test it thusly
 
-  def test_player_choice_removed_from_number_pool
-    player_choice = 1
-    assert_equal number_pool, [2,3,4,5,6,7,8,9]
+  def is_beginning_array_all_9_numbers
+    assert_equal @number_pool,  [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
-#test winner
 
+#   def test_player_choice_removed_from_number_pool
+#     player_choice = 1
+#     assert_equal number_pool, [2,3,4,5,6,7,8,9]
+#   end
+# #test winner
+#
+# end
 end

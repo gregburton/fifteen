@@ -47,7 +47,6 @@ class Game
     play_num = @player_numbers.combination(3).to_a
     if play_num.any?{ |array| sum(array) == 15 }
       puts "You Win"
-      game.new
       #NameError: undefined local variable or method `play_again' for #<Game:0x007ff86cb1ead8> from fifteen.rb:51:in `score_player'
     else
     end
@@ -72,7 +71,6 @@ class Game
     comp_num = @computer_numbers.combination(3).to_a
     if comp_num.any?{ |array| sum(array) == 15}
       puts "Computer Wins"
-      play_again
     else
     end
   end
@@ -104,10 +102,14 @@ end
 # def number
 #   @number
 # end
-
-game1 = Game.new
-  puts  "Welcome to our game of 15. You and the computer will take turns choosing one number at a time between 1 to 9. Someone wins if they have said three numbers that sum to 15. Once a number is chosen, it can't be used again this round. Note that any combination of three numbers you mentioned can be used."
-game1.player_turn
-game1.computer_turn
-# having player_turn and computer_turn mentioned down here (outside of class) is necessary for game to run properly
-  puts "Game over"
+loop do
+  game1 = Game.new
+  puts "Welcome to our game of 15. You and the computer will take turns choosing one number at a time between 1 to 9. Someone wins if they have said three numbers that sum to 15. Once a number is chosen, it can't be used again this round. Note that any combination of three numbers you mentioned can be used."
+  game1.player_turn
+  game1.computer_turn
+  # having player_turn and computer_turn mentioned down here (outside of class) is necessary for game to run properly
+  puts "Game over. Would you like to play again? (Y)es or (N)o?"
+    player_response = gets.chomp.to_s
+    break if player_response.upcase == "N"
+      exit
+end

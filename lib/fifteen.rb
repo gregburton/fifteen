@@ -40,7 +40,7 @@ class Game
 
 
   def computer_turn
-    computer_choice = @number_pool.sample 
+    computer_choice = @number_pool.sample
     puts "The computer chose #{computer_choice}"
     @number_pool.delete(computer_choice)
     @computer_numbers << computer_choice
@@ -51,7 +51,6 @@ class Game
     end
   end
 
-
 # Only invoke did_ye_win after each player has three numbers. Need a counter for number of guesses.
 
   def did_ye_win(numbers, sum)
@@ -60,8 +59,9 @@ class Game
 
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     sum = ARGV.empty? ? 15 : ARGV.first.to_i
+    # sum = 15
   end
-
+  #
   def sum_exists(numbers, sum)
     Array(numbers).combination(3).find_all { |x, y, z| x + y + z == sum } || []
     result = sum_exists(numbers, sum)

@@ -15,9 +15,11 @@ class Game
     @computer_numbers = []
   end
 
-  def greeting
-    puts "Welcome to our game of 15. You and the computer will take turns choosing one number at a time between 1 to 9. Someone wins if they have said three numbers that sum to 15. Once a number is chosen, it can't be used again this round. Note that any combination of three numbers you mentioned can be used."
-  end
+
+# trying this down in the list of game methods
+  # def greeting
+  #   puts "Welcome to our game of 15. You and the computer will take turns choosing one number at a time between 1 to 9. Someone wins if they have said three numbers that sum to 15. Once a number is chosen, it can't be used again this round. Note that any combination of three numbers you mentioned can be used."
+  # end
 
   # We could make these into classes
   # Need to put some way of randomly choosing who goes first.
@@ -25,11 +27,11 @@ class Game
 
   def player_turn #need argument here?
     puts "What number do you choose?"
-    gets.chomp.to_i = player_choice
+    player_choice = gets.chomp.to_i
     @number_pool.delete(player_choice)
     @player_numbers << player_choice
 
-    if @player_numbers >= 3
+    if @player_numbers.size >= 3
       @player_numbers.did_ye_win
     else
       computer_turn
@@ -38,7 +40,7 @@ class Game
 
 
   def computer_turn
-    @number_pool.sample = computer_choice
+    computer_choice = @number_pool.sample 
     puts "The computer chose #{computer_choice}"
     @number_pool.delete(computer_choice)
     @computer_numbers << computer_choice
@@ -48,6 +50,7 @@ class Game
       player_turn
     end
   end
+
 
 # Only invoke did_ye_win after each player has three numbers. Need a counter for number of guesses.
 
@@ -86,3 +89,13 @@ class Game
 #   @number
 # end
 end
+
+game1 = Game.new
+#game1.initialize
+#game1.greeting
+  puts  "Welcome to our game of 15. You and the computer will take turns choosing one number at a time between 1 to 9. Someone wins if they have said three numbers that sum to 15. Once a number is chosen, it can't be used again this round. Note that any combination of three numbers you mentioned can be used."
+game1.player_turn
+game1.computer_turn
+game1.did_ye_win
+game1.sum_exists
+  puts "Game over"

@@ -68,7 +68,7 @@ class Game
     if play_num.any?{ |array| sum(array) == 15 }
       # doesn't work ... puts = "Player's winning combination (not the whole hand, necessarily) #{play_num}"
       puts "You Win! player numbers are #{@player_numbers} Computer numbers are #{@computer_numbers}. Number pool is #{@number_pool}. "
-        start
+        play_again
     else
       computer_turn
     end
@@ -91,7 +91,7 @@ class Game
     comp_num = @computer_numbers.combination(3).to_a
     if comp_num.any?{ |array| sum(array) == 15}
       puts "Computer Wins"
-        start
+        play_again
     else
       player_turn
     end
@@ -100,14 +100,31 @@ class Game
   def start
     loop do
     game1 = Game.new
-    puts "Welcome to our game of 15. You and the computer will take turns choosing one number at a time between 1 to 9. Someone wins if they have said three numbers that sum to 15. Once a number is chosen, it can't be used again this round. Note that any combination of three numbers you mentioned can be used."
+    puts "Welcome to our game of 15. You and the computer will take turns choosing one number at a time between 1 and 9. Someone wins if they have said three numbers that sum to 15. Once a number is chosen, it can't be used again this round. Note that any combination of three numbers you mentioned can be used."
     game1.flip
     game1.player_turn
     game1.computer_turn
     # having player_turn and computer_turn mentioned down here (outside of class) is necessary for game to run properly
+    # puts "Game over. Would you like to play again? (Y)es or (N)o?"
+    # player_response = gets.chomp.to_s
+    # break if player_response.upcase == "N"
+    end
+  end
+
+  def play_again
     puts "Game over. Would you like to play again? (Y)es or (N)o?"
     player_response = gets.chomp.to_s
-    break if player_response.upcase == "N"
+    if player_response.upcase == "Y"
+      loop do
+      game2 = Game.new
+      puts "You are a worthy adversary. I am happy to play again with you."
+      game2.flip
+      game2.player_turn
+      game2.computer_turn
+    # having player_turn and computer_turn mentioned down here (outside of class) is necessary for game to run properly
+      end
+    else
+      exit
     end
   end
 
